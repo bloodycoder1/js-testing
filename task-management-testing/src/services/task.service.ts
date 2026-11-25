@@ -1,5 +1,6 @@
 import { TaskRepository } from "../repositories/task.repository";
 import { CreateTaskDTO, Task } from "../types/task.types";
+import { UpdateTaskDTO } from './../types/task.types';
 
 export class TaskService {
 
@@ -45,4 +46,12 @@ export class TaskService {
 
         await this.taskRepository.delete(id);
     }
+    
+    async updateTask(
+        id: string,
+        data: UpdateTaskDTO
+    ): Promise<Task> {
+        return await this.taskRepository.update(id, data);
+    }
+
 }

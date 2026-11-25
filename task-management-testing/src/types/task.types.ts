@@ -1,3 +1,4 @@
+
 export interface Task {
     id: string;
     title: string;
@@ -9,4 +10,10 @@ export interface Task {
 export interface CreateTaskDTO {
     title: string;
     description?: string;
+}
+
+export interface UpdateTaskDTO {
+    title?: string;
+    description?: string;
+    completed?: boolean;
 }

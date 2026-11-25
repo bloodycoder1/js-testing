@@ -1,5 +1,5 @@
 import { supabase } from "../config/supabase";
-import { Task, CreateTaskDTO } from "../types/task.types";
+import { Task, CreateTaskDTO, UpdateTaskDTO } from "../types/task.types";
 
 export class TaskRepository {
 
@@ -57,4 +57,21 @@ export class TaskRepository {
             throw new Error(error.message);
         }
     }
+   
+async update(id: string, data: UpdateTaskDTO): Promise<Task> {
+
+    const { data: task, error } = await supabase
+        .from("tasks")
+        .update(data)
+        .eq("id", id)
+        .select()
+        .single();
+
+    if (error) {
+        throw new Error(error.message);
+    }
+
+    return task as Task;
+}
+
 }
